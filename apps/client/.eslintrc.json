@@ -17,7 +17,7 @@
           "error",
           {
             "type": "element",
-            "prefix": "learn-angular-apollo-nestjs-graphql",
+            "prefix": "app",
             "style": "kebab-case"
           }
         ]

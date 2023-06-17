@@ -19,13 +19,13 @@ npx create-nx-workspace@latest --preset nest
 npm install @nrwl/angular
 ```
 ```
-nx generate @nrwl/angular:application --name client
+nx generate @nrwl/angular:application --name client \
+--style scss \
+--prefix app \
+--routing
 ```
-- style? => scss
-- config? => false
-- routing? => true
 
-add angular material  
+*add angular material*  
 ```
 npm install @angular/material --dev
 npx nx g @angular/material:ng-add --project=client

@@ -2,7 +2,7 @@
   "name": "client",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "projectType": "application",
-  "prefix": "learn-angular-apollo-nestjs-graphql",
+  "prefix": "app",
   "sourceRoot": "apps/client/src",
   "tags": [],
   "targets": {

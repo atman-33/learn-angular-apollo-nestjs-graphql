@@ -1,14 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouterModule } from '@angular/router';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { appRoutes } from './app.routes';
+import { LoginModule } from './auth/login/login.module';
+import { SignUpModule } from './auth/sign-up/sign-up.module';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, { initialNavigation: 'enabledBlocking' }),
+    AppRoutingModule,
+    HeaderModule,
+    LoginModule,
+    SignUpModule
   ],
   providers: [],
   bootstrap: [AppComponent],
