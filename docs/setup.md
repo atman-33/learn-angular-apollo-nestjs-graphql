@@ -70,18 +70,68 @@ npm install joi
 npm install bcrypt
 ```
 
-## install apollo for angular
+## install and use apollo, graphql for angular
 ```
 npm install apollo-angular @apollo/client graphql --force
 ```
 
+### about codegen  
 ```
 npm install @graphql-codegen/cli @graphql-codegen/schema-ast @graphql-codegen/typescript-apollo-angular @graphql-codegen/typescript-operations
 ```
-*tsconfig.base.json => add "ESNext.AsyncIterable" in lib*  
+*1. tsconfig.base.json => add "ESNext.AsyncIterable" in lib*  
 ```
   "compilerOptions": {
     ...,
     "lib": ["es2020", "dom", "ESNext.AsyncIterable"],
     ...
 ```
+
+*2. update app.module.ts*  
+- add provide APOLLO_OPTIONS, userFactory etc
+
+*3. create proxy and change project.json*
+- create proxy.conf.json
+- change project.json to add using proxy.conf.json
+
+*4. create codegen.yml*
+```
+schema: http://localhost:3000/graphql
+documents: "./apps/client/src/**/*.graphql"
+generates: 
+  apps/client/src/generated-types.ts: 
+    plugins: 
+      - typescript
+      - typescript-operations
+      - typescript-apollo-angular
+```
+
+*5. add target condegen in project.json*
+```
+    "codegen": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "graphql-codegen --config apps/client/codegen.yml --watch"
+      }
+```
+
+*6. create <name>.mutation.graphql*
+
+*7. execute codegen*
+```
+nx codegen client
+```
+
+### about auto complete graphql
+
+*1. create .graphqlrc.yml on the top directory*
+```
+schema: http://localhost:3000/graphql
+documents: "./apps/client/src/**/*.graphql"
+```
+
+*2. install orsenkucher.vscode-graphql in vscode*
+
+* . reopen workspace*
+
+then you can check that where *.graphql are success.  

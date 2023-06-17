@@ -6,16 +6,35 @@ import { LoginModule } from './auth/login/login.module';
 import { SignUpModule } from './auth/sign-up/sign-up.module';
 import { HeaderModule } from './header/header.module';
 
+import { HttpClientModule } from '@angular/common/http';
+import { InMemoryCache } from '@apollo/client/core';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     HeaderModule,
     LoginModule,
     SignUpModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httplink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httplink.create({
+            uri: 'api/graphql'
+          })
+        }
+      },
+      deps: [HttpLink]
+    }
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
