@@ -44,3 +44,8 @@ npx nx generate @nx/js:library domain --directory=shared --importPath=@libs/shar
 - bundler => none
 
 > if you don't need shared-domain.ts, remove it.
+
+## install graphql
+```
+npm install @nestjs/graphql @nestjs/apollo graphql apollo-server-express
+```

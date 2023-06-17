@@ -28,3 +28,9 @@ nx generate @nx/angular:module <module-name> --project=client
 nx generate @nx/angular:component <module-name> --project=client
 ```
 > outside of nx, ng g component <module-name>
+
+## generate nestjs module
+```
+nx generate @nx/nest:module <module-name> --project=server
+```
+> outside of nx, nest g <module-name>
