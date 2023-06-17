@@ -45,7 +45,43 @@ npx nx generate @nx/js:library domain --directory=shared --importPath=@libs/shar
 
 > if you don't need shared-domain.ts, remove it.
 
-## install graphql
+## install graphql etc for nestjs
 ```
 npm install @nestjs/graphql @nestjs/apollo graphql apollo-server-express
+```
+
+## install class validator etc for nestjs
+```
+npm install class-validator class-transformer
+```
+
+## install mongoose and config for nestjs
+```
+npm install @nestjs/mongoose mongoose @nestjs/config
+```
+
+## install joi for nestjs *joi for validating .env values
+```
+npm install joi
+```
+
+## install bcrypt for nestjs
+```
+npm install bcrypt
+```
+
+## install apollo for angular
+```
+npm install apollo-angular @apollo/client graphql --force
+```
+
+```
+npm install @graphql-codegen/cli @graphql-codegen/schema-ast @graphql-codegen/typescript-apollo-angular @graphql-codegen/typescript-operations
+```
+*tsconfig.base.json => add "ESNext.AsyncIterable" in lib*  
+```
+  "compilerOptions": {
+    ...,
+    "lib": ["es2020", "dom", "ESNext.AsyncIterable"],
+    ...
 ```
