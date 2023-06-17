@@ -8,6 +8,7 @@ import { Component } from '@angular/core';
 export class SignUpComponent {
 
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   signUp({ email, password }: any){
     console.log(email, password);
   }
