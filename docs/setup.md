@@ -25,6 +25,17 @@ nx generate @nrwl/angular:application --name client
 - config? => false
 - routing? => true
 
+add angular material  
+```
+npm install @angular/material --dev
+npx nx g @angular/material:ng-add --project=client
+```
+- custom theme? => pink-bluegrey(no matter what you choose)
+- global angular material typography styles? => true
+- include angular animations module? => do not include
+
+> outside of nx, ng add @angular/material
+
 ## add domain in the library
 ```
 npx nx generate @nx/js:library domain --directory=shared --importPath=@libs/shared/domain --tags=scope:shared,type:domain
