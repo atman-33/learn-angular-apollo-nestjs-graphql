@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { Observable, map } from 'rxjs';
+import { Bookmark, BookmarksGQL } from '../../generated-types';
 import { CreateBookmarkComponent } from './create-bookmark/create-bookmark.component';
 
 @Component({
@@ -7,11 +9,24 @@ import { CreateBookmarkComponent } from './create-bookmark/create-bookmark.compo
   templateUrl: './bookmarks.component.html',
   styleUrls: ['./bookmarks.component.scss'],
 })
-export class BookmarksComponent {
+export class BookmarksComponent implements OnInit {
+  bookmarks$!: Observable<Bookmark[]>;
 
-  constructor(private readonly dialog: MatDialog){}
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly bookmarksGql: BookmarksGQL) { }
+
+  ngOnInit(): void {
+    this.bookmarks$ = this.bookmarksGql
+      .watch()
+      .valueChanges.pipe(map(result => result.data.bookmarks));
+  }
 
   onFabClick() {
     this.dialog.open(CreateBookmarkComponent);
+  }
+
+  onBookmarkClick(bookmarkId: string){
+    console.log()
   }
 }

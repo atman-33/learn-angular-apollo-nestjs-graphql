@@ -20,6 +20,11 @@ export class BookmarksService {
         return this.toModel(bookmarkDocument);
     }
 
+    async getBookmarks(userId: string) {
+        const bookmarkDocuments = await this.bookmarksRepository.find({ userId });
+        return bookmarkDocuments.map((bookmark) => this.toModel(bookmark));
+    }
+
     private toModel(bookmarkDocument: BookmarkDocument) {
         return {
             _id: bookmarkDocument._id.toHexString(),

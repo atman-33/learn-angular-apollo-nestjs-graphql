@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CreateBookmarkGQL } from '../../../generated-types';
+import { BookmarksDocument, CreateBookmarkGQL } from '../../../generated-types';
 
 @Component({
   selector: 'app-create-bookmark',
@@ -23,10 +23,18 @@ export class CreateBookmarkComponent {
   }
 
   createBookmark() {
-    this.createBookmarkGql.mutate({
-      createBookmarkData: { name: this.bookmarkName.value ?? ''}
-    }).subscribe(() => {
-      this.dialogRef.close();
-    });
+    this.createBookmarkGql
+      .mutate(
+        {
+          createBookmarkData: { name: this.bookmarkName.value ?? '' }
+        },
+        {
+          refetchQueries: [{
+            query: BookmarksDocument  // after create bookmark, add new bookmark on the screen
+          }]
+        })
+      .subscribe(() => {
+        this.dialogRef.close();
+      });
   }
 }

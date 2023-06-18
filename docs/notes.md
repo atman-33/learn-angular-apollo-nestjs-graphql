@@ -20,6 +20,35 @@ nx codegen client
 4. update Component
     - add create method
 
+## add query graphql
+*flow*  
+1. start code-gen by watching mode
+```
+nx codegen client
+```
+
+2. create <name>.query.graphql
+3. check code-gen terminal that success displayed
+4. update Component
+    - add field <name>$!: Observable<xxx>
+    - add ngOnInit  
+> example  
+```
+export class BookmarksComponent implements OnInit {
+  bookmarks$!: Observable<Bookmark[]>;
+
+  constructor(
+    private readonly dialog: MatDialog,
+    private readonly bookmarksGql: BookmarksGQL) { }
+
+  ngOnInit(): void {
+    this.bookmarks$ = this.bookmarksGql
+      .watch()
+      .valueChanges.pipe(map(result => result.data.bookmarks));
+  }
+  ...
+```
+
 # NestJS
 
 ## add rest component
