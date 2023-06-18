@@ -8,6 +8,7 @@ import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
 import { UsersModule } from './users/users.module';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 
 @Module({
   imports: [
@@ -18,7 +19,7 @@ import { UsersModule } from './users/users.module';
         PORT: Joi.number().required(),
         MONGODB_URI: Joi.string().required(),
         JWT_EXPIRATION: Joi.number().required(),
-        JWT_SECRET: Joi.string().required()
+        JWT_SECRET: Joi.string().required(),
       }),
     }),
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -28,6 +29,7 @@ import { UsersModule } from './users/users.module';
     UsersModule,
     DatabaseModule,
     AuthModule,
+    BookmarksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
