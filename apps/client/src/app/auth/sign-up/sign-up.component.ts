@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
-import { CreateUserGQL } from '../../../generated-types';
+import { Router } from '@angular/router';
+import { concatMap } from 'rxjs';
+import { CreateUserGQL, CreateUserInput } from '../../../generated-types';
+import { LoginService } from '../login/login.service';
 
 @Component({
   selector: 'app-sign-up',
@@ -7,14 +10,22 @@ import { CreateUserGQL } from '../../../generated-types';
   styleUrls: ['./sign-up.component.scss'],
 })
 export class SignUpComponent {
-  constructor(private readonly createUserGql: CreateUserGQL) { }
-  
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  signUp({ email, password }: any) {
+  constructor(
+    private readonly createUserGql: CreateUserGQL,
+    private readonly loginService: LoginService,
+    private readonly router: Router) { }
+
+  signUp(createUserData: CreateUserInput) {
     // console.log(email, password);
     this.createUserGql
-      .mutate({ createUserData: { email, password } })
-      // eslint-disable-next-line @typescript-eslint/no-empty-function
-      .subscribe(() => {});
+      .mutate({ createUserData })
+      .pipe(
+        concatMap(() => {
+          return this.loginService.login(createUserData);
+        })
+      )
+      .subscribe(() => {
+        this.router.navigate(['/']);
+      });
   }
 }
