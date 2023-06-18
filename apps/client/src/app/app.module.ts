@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
+import { BookmarkModule } from './bookmarks/bookmark/bookmark.module';
 import { HomeModule } from './home/home.module';
 
 @NgModule({
@@ -25,6 +26,7 @@ import { HomeModule } from './home/home.module';
     LoginModule,
     SignUpModule,
     HomeModule,
+    BookmarkModule
   ],
   providers: [
     {
