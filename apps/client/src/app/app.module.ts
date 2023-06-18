@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { HttpLink } from 'apollo-angular/http';
     ApolloModule,
     HeaderModule,
     LoginModule,
-    SignUpModule
+    SignUpModule,
+    HomeModule,
   ],
   providers: [
     {
@@ -31,13 +33,13 @@ import { HttpLink } from 'apollo-angular/http';
         return {
           cache: new InMemoryCache(),
           link: httplink.create({
-            uri: 'api/graphql'
-          })
+            uri: 'api/graphql',
+          }),
         };
       },
-      deps: [HttpLink]
-    }
+      deps: [HttpLink],
+    },
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

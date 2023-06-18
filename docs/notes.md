@@ -8,6 +8,18 @@ nx generate @nx/angular:module <module-name> --project=client
 nx generate @nx/angular:component <component-name> --project=client
 ```
 
+## add mutation graphql
+*flow*  
+1. start code-gen by watching mode
+```
+nx codegen client
+```
+
+2. create <name>.mutation.graphql
+3. check code-gen terminal that success displayed
+4. update Component
+    - add create method
+
 # NestJS
 
 ## add rest component
@@ -35,7 +47,7 @@ nx generate @nx/nest:resolver app/<resolver-name> --project=server
 nx generate @nx/nest:service app/<service-name> --project=server
 ```
 
-> following example is create any ver.  
+> following example is create pattern.  
 
 2. create <name>.model.ts           *name => singular
 3. create <name>.schema.ts          *name => singular
