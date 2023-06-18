@@ -82,13 +82,44 @@ npm install @graphql-codegen/cli @graphql-codegen/schema-ast @graphql-codegen/ty
 *1. tsconfig.base.json => add "ESNext.AsyncIterable" in lib*  
 ```
   "compilerOptions": {
-    ...,
+    ...
     "lib": ["es2020", "dom", "ESNext.AsyncIterable"],
     ...
 ```
 
 *2. update app.module.ts*  
 - add provide APOLLO_OPTIONS, userFactory etc
+```
+@NgModule({
+  declarations: [AppComponent],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule,
+    AppRoutingModule,
+    ApolloModule,
+    HeaderModule,
+    LoginModule,
+    SignUpModule
+  ],
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httplink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httplink.create({
+            uri: 'api/graphql'
+          })
+        }
+      },
+      deps: [HttpLink]
+    }
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+```
 
 *3. create proxy and change project.json*
 - create proxy.conf.json
@@ -120,6 +151,15 @@ generates:
 *7. execute codegen*
 ```
 nx codegen client
+```
+
+*8. change noImplicitOverride int tsconfig.json
+noImplicitOverride => false  
+```
+  "compilerOptions": {
+    ...
+    "noImplicitOverride": false,
+    ...
 ```
 
 ### about auto complete graphql

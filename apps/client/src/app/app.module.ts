@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginModule } from './auth/login/login.module';
@@ -8,15 +9,17 @@ import { HeaderModule } from './header/header.module';
 
 import { HttpClientModule } from '@angular/common/http';
 import { InMemoryCache } from '@apollo/client/core';
-import { APOLLO_OPTIONS } from 'apollo-angular';
+import { APOLLO_OPTIONS, ApolloModule } from 'apollo-angular';
 import { HttpLink } from 'apollo-angular/http';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
+    ApolloModule,
     HeaderModule,
     LoginModule,
     SignUpModule
@@ -30,11 +33,11 @@ import { HttpLink } from 'apollo-angular/http';
           link: httplink.create({
             uri: 'api/graphql'
           })
-        }
+        };
       },
       deps: [HttpLink]
     }
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
