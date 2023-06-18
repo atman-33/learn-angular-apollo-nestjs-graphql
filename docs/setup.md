@@ -175,3 +175,17 @@ documents: "./apps/client/src/**/*.graphql"
 * . reopen workspace*
 
 then you can check that where *.graphql are success.  
+
+## install passport for server
+```
+npm install --save @nestjs/passport passport passport-local
+npm install --save-dev @types/passport-local
+npm install --save @nestjs/jwt passport-jwt
+npm install --save-dev @types/passport-jwt
+```
+
+## install coookie-parser
+```
+npm install cookie-parser
+npm install --save-dev @types/cookie-parser
+```

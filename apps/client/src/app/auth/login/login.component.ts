@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { CreateUserInput } from '../../../generated-types';
+import { LoginService } from './login.service';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  login({ email, password }: any){
-    console.log(email, password);
+  constructor(private readonly loginService: LoginService){}
+
+  login(createUserData: CreateUserInput){
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
+    this.loginService.login(createUserData).subscribe(() => {})
   }
 }
