@@ -189,3 +189,8 @@ npm install --save-dev @types/passport-jwt
 npm install cookie-parser
 npm install --save-dev @types/cookie-parser
 ```
+
+## install link-preview
+```
+npm install link-preview-js
+```

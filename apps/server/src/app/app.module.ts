@@ -6,9 +6,10 @@ import * as Joi from 'joi';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { DatabaseModule } from './database/database.module';
-import { UsersModule } from './users/users.module';
 import { BookmarksModule } from './bookmarks/bookmarks.module';
+import { DatabaseModule } from './database/database.module';
+import { LinksModule } from './links/links.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -25,11 +26,17 @@ import { BookmarksModule } from './bookmarks/bookmarks.module';
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,
       driver: ApolloDriver,
+      // playground: {
+      //   config: {
+      //     setTimeout: 10000,
+      //   }
+      // }
     }),
     UsersModule,
     DatabaseModule,
     AuthModule,
     BookmarksModule,
+    LinksModule,
   ],
   controllers: [AppController],
   providers: [AppService],
