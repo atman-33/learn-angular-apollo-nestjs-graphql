@@ -9,7 +9,7 @@ cd ~/Sites
 ```
 npx create-nx-workspace@latest --preset nest
 ```
-- workspace name? => learn-angular-apollo-nestjs-graphql
+- workspace name? => nx-angular-apollo-nestjs-graphql-template
 - app name? => server
 
 > preset angular-nest does not exist.

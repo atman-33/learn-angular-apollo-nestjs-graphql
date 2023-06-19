@@ -9,7 +9,7 @@
           "error",
           {
             "type": "attribute",
-            "prefix": "learnAngularApolloNestjsGraphql",
+            "prefix": "nxAngularApolloNestjsGraphqlTemplate",
             "style": "camelCase"
           }
         ],
